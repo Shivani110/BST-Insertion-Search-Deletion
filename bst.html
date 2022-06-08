@@ -1,0 +1,124 @@
+<html>
+<body>
+<script>
+class nodes
+{
+	constructor(v)
+  {
+		this.n = v;
+		this.l_child = null;
+		this.r_child= null;
+	}
+}
+function n_nodes(v)
+{
+    let t = new nodes();
+		t.n = v;
+		t.l_child = t.r_child = null;
+		return t;
+}
+function INorder(Root)
+{
+		if (Root != null)
+    {
+		  INorder(Root.l_child);
+			document.write(Root.n + " ");
+		  INorder(Root.r_child);
+		}
+}
+function Insertion(p, n)
+{
+		if (p == null)
+			return n_nodes(n);
+		if (n < p.n)
+		  p.l_child = Insertion(p.l_child, n);
+		else
+			p.r_child = Insertion(p.r_child, n);
+		return p;
+}
+function Deletion(Root , v)
+{
+		if (Root == null)
+			return Root;
+
+		if (Root.n > v)
+    {
+			Root.l_child = Deletion(Root.l_child, v);
+			return Root;
+		}
+    else if (Root.n < v)
+    {
+			Root.r_child = Deletion(Root.r_child, v);
+			return Root;
+		}
+
+		if (Root.l_child == null)
+    {
+	    var t = Root.r_child;
+			return t;
+		}
+    else if (Root.r_child == null)
+    {
+	    var t = Root.l_child;
+			return t;
+		}
+		else
+    {
+
+	    var succ = Root;
+	    var suc = Root.r_child;
+
+			while (suc.l_child != null)
+      {
+				succ = suc;
+				suc = suc.l_child;
+			}
+
+			if (succ != Root)
+				succ.l_child = suc.r_child;
+			else
+				succt.r_child = suc.r_child;
+			Root.n = suc.n;
+			return Root;
+		}
+}
+function Searching(Root, x)
+{
+	if(Root == null)
+	{
+		document.write("<br>The element is not present in the tree: "+x);
+    document.write("<br>");
+  }
+	else if(Root.n == x)
+	{
+		document.write("<br>The element is present in the tree: "+x);
+  document.write("<br>")
+	}
+	else if(x<= Root.n)
+	{
+		return Searching(Root.l_child,x);
+	}
+	else
+	{
+		return Searching(Root.r_child,x);
+	}
+}
+    let Root = null;
+    Root = Insertion(Root, 20);
+  	Root = Insertion(Root, 10);
+  	Root = Insertion(Root, 25);
+  	Root = Insertion(Root, 34);
+  	Root = Insertion(Root, 40);
+  	Root = Insertion(Root, 50);
+  	Root = Insertion(Root, 11);
+  	Root = Insertion(Root, 5);
+  	document.write("Inorder: <br>");
+	INorder(Root);
+    Searching(Root,40);
+	document.write("Delete 25<br/>");
+	Root = Deletion(Root,25 );
+	document.write("Inorder: <br>");
+	INorder(Root);
+</script>
+</body>
+</html>
