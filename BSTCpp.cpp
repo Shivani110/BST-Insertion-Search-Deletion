@@ -105,28 +105,17 @@ int main()
 	Root = Insertion(Root, 14);
 	Root = Insertion(Root, 40);
 	Root = Insertion(Root, 50);
-
-    if(Searching(Root,20) == true)
+      
+	printf("\n Inorder:\n");
+	INorder(Root);
+       if(Searching(Root,20) == true)
 	cout<<"\n The element is found: "<<20<<"\n";
 	else
 	cout<<"\n The element is not found: "<<20<<"\n";
-    printf("\n Inorder:\n");
-	INorder(Root);
 	
 	printf("Delete 12");
-    Root = Deletion(Root, 12);
+        Root = Deletion(Root, 12);
 	printf("\n Inorder:\n");
 	INorder(Root);
-
-	printf("Delete 34 ");
-	Root = Deletion(Root, 34);
-	printf("\n INorder : \n");
-	INorder(Root);
-
-    if(Searching(Root, 15) == true)
-	cout<<"\n The element is found: "<<15<<"\n";
-	else
-	cout<<"\n The element is not found: "<<15<<"\n";
-
 	return 0;
 }
